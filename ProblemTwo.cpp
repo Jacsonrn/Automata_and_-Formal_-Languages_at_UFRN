@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <cctype>
+#include <algorithm>
 
 using namespace std;
 
@@ -87,7 +88,12 @@ public:
         string resultado = "";
 
         if (milhares > 0) {
-            resultado += processarBloco(milhares, true) + " " + (idioma == 1 ? "mil" : "thousand");
+            string blocoMilhares = processarBloco(milhares, true);
+            if (blocoMilhares.empty()) {
+                resultado += (idioma == 1 ? "mil" : "thousand");
+            } else {
+                resultado += blocoMilhares + " " + (idioma == 1 ? "mil" : "thousand");
+            }
             if (unidades > 0) {
                 if (unidades <= 100 || unidades % 100 == 0) resultado += (idioma == 1 ? " e " : " ");
                 else resultado += (idioma == 1 ? " " : " ");
@@ -129,6 +135,9 @@ int main() {
             cout << "-> Idioma alterado para: " << (idioma == 1 ? "Portugues" : "English") << endl;
             continue;
         }
+
+        // Remove pontos da entrada para tratar números como "204.328" corretamente
+        entrada.erase(remove(entrada.begin(), entrada.end(), '.'), entrada.end());
 
         if (!isNumeroValido(entrada)) {
             cout << "-> Saida: entrada invalida (so respondo se a entrada for um numero entre 0 e 999.999)." << endl;
