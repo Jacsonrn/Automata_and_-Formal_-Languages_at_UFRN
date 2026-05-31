@@ -5,6 +5,7 @@
 *.o
 *.obj
 *.dll
+*.txt
 
 # Diretorios de build e compilacao
 bin/
