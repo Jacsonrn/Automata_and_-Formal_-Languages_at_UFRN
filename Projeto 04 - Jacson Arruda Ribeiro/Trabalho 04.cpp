@@ -147,7 +147,7 @@ public:
 };
 
 void iniciarConfiguracao() {
-    GramaticaLivreContexto G;
+    GramaticaLivreContexto G;3
     int opcao;
     
     do {
