@@ -5,6 +5,7 @@
 *.o
 *.obj
 *.dll
+*.pyc
 
 # Diretorios de build e compilacao
 bin/
